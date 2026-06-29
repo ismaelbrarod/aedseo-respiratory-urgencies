@@ -39,7 +39,7 @@ DIR_TABLES <- "results/tables"
 dirs <- c(
   DIR_RAW,
   DIR_PROCESSED,
-  DIR_OUTPUT,
+#  DIR_OUTPUT,
   DIR_FIGURES,
   DIR_TABLES
 )

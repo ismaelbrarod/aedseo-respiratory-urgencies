@@ -23,18 +23,10 @@ tabla_inicio_peak <- total_resp %>%
     .groups = "drop"
   )
 
-tabla_inicio_peak %>%
-  gt() %>%
-  fmt_number(
-    c(incremento_max, consultas_inicio, consultas_peak),
-    decimals = 0
-  ) %>%
-  tab_header(
-    title = "Inicio de temporada y peak anual"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "inicio_peak.html")
-  )
+write_csv(
+  tabla_inicio_peak,
+  file.path(DIR_TABLES, "inicio_peak.csv")
+)
 
 inicio_pts <- total_resp %>%
   group_by(anio_epi) %>%
@@ -168,18 +160,10 @@ tabla_inicio_peak_pct <- tabla_pct_semanal %>%
     .groups = "drop"
   )
 
-tabla_inicio_peak_pct %>%
-  gt() %>%
-  fmt_percent(
-    c(incremento_max, pct_inicio, pct_peak),
-    decimals = 1
-  ) %>%
-  tab_header(
-    title = "Inicio de temporada y peak anual (% respiratorias)"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "inicio_peak_pct.html")
-  )
+write_csv(
+  tabla_inicio_peak_pct,
+  file.path(DIR_TABLES, "inicio_peak_pct.csv")
+)
 
 inicio_pts_pct <- tabla_pct_semanal %>%
   group_by(anio_epi) %>%

@@ -37,14 +37,10 @@ tabla_general <- tibble(
   )
 )
 
-tabla_general %>%
-  gt() %>%
-  tab_header(
-    title = "Resumen general de consultas de urgencia"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "resumen_general.html")
-  )
+write_csv(
+  tabla_general,
+  file.path(DIR_TABLES, "resumen_general.csv")
+)
 
 # ==============================================================================
 # TABLA 2. CONSULTAS RESPIRATORIAS COMO % DEL TOTAL, POR AÑO EPI
@@ -77,22 +73,10 @@ tabla_anual <- bind_rows(
     pct_respiratorias = total_respiratorias / total_urgencias
   )
 
-tabla_anual %>%
-  gt() %>%
-  fmt_number(
-    c(total_urgencias, total_respiratorias),
-    decimals = 0
-  ) %>%
-  fmt_percent(
-    pct_respiratorias,
-    decimals = 1
-  ) %>%
-  tab_header(
-    title = "Consultas respiratorias como % del total, por año epidemiológico"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "respiratorias_por_anio.html")
-  )
+write_csv(
+  tabla_anual,
+  file.path(DIR_TABLES, "respiratorias_por_anio.csv")
+)
 
 # ==============================================================================
 # TABLA 3. CONSISTENCIA TOTAL RESPIRATORIAS VS SUBCAUSAS
@@ -118,22 +102,10 @@ tabla_consistencia <- total_resp %>%
     diferencia_pct = diferencia / total_respiratorias
   )
 
-tabla_consistencia %>%
-  gt() %>%
-  fmt_number(
-    c(total_respiratorias, suma_subcausas, diferencia),
-    decimals = 0
-  ) %>%
-  fmt_percent(
-    diferencia_pct,
-    decimals = 2
-  ) %>%
-  tab_header(
-    title = "Validación de consistencia de causas respiratorias"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "consistencia_respiratorias.html")
-  )
+write_csv(
+  tabla_consistencia,
+  file.path(DIR_TABLES, "consistencia_respiratorias.csv")
+)
 
 # ==============================================================================
 # TABLA 4. COMPOSICIÓN DE CAUSAS RESPIRATORIAS
@@ -150,22 +122,10 @@ tabla_causa <- causas_resp %>%
   ) %>%
   arrange(desc(consultas))
 
-tabla_causa %>%
-  gt() %>%
-  fmt_number(
-    consultas,
-    decimals = 0
-  ) %>%
-  fmt_percent(
-    porcentaje,
-    decimals = 1
-  ) %>%
-  tab_header(
-    title = "Composición de causas respiratorias"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "causas_respiratorias.html")
-  )
+write_csv(
+  tabla_causa,
+  file.path(DIR_TABLES, "causas_respiratorias.csv")
+)
 
 # ==============================================================================
 # TABLA 5. DISTRIBUCIÓN ETARIA
@@ -189,19 +149,7 @@ tabla_edad <- tibble(
     porcentaje = consultas / sum(consultas)
   )
 
-tabla_edad %>%
-  gt() %>%
-  fmt_number(
-    consultas,
-    decimals = 0
-  ) %>%
-  fmt_percent(
-    porcentaje,
-    decimals = 1
-  ) %>%
-  tab_header(
-    title = "Distribución etaria de consultas respiratorias"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "distribucion_edad.html")
-  )
+write_csv(
+  tabla_edad,
+  file.path(DIR_TABLES, "distribucion_edad.csv")
+)

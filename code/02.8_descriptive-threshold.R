@@ -62,18 +62,10 @@ for (a in anios_threshold) {
 tabla_threshold_total <- bind_rows(tabla_threshold_total)
 series_threshold_total <- bind_rows(series_threshold_total)
 
-tabla_threshold_total %>%
-  gt() %>%
-  fmt_number(
-    c(baseline, consultas_peak),
-    decimals = 0
-  ) %>%
-  tab_header(
-    title = "Threshold estacional - consultas respiratorias"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "threshold_total.html")
-  )
+write_csv(
+  tabla_threshold_total,
+  file.path(DIR_TABLES, "threshold_total.csv")
+)
 
 fig_threshold_inicio <- tabla_threshold_total %>%
   ggplot(
@@ -200,18 +192,10 @@ for (a in anios_threshold) {
 tabla_threshold_pct <- bind_rows(tabla_threshold_pct)
 series_threshold_pct <- bind_rows(series_threshold_pct)
 
-tabla_threshold_pct %>%
-  gt() %>%
-  fmt_percent(
-    c(baseline, pct_peak),
-    decimals = 1
-  ) %>%
-  tab_header(
-    title = "Threshold estacional (% consultas respiratorias)"
-  ) %>%
-  gtsave(
-    file.path(DIR_TABLES, "threshold_pct.html")
-  )
+write_csv(
+  tabla_threshold_pct,
+  file.path(DIR_TABLES, "threshold_pct.csv")
+)
 
 fig_threshold_inicio_pct <- tabla_threshold_pct %>%
   ggplot(

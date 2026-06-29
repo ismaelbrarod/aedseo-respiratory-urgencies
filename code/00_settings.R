@@ -26,7 +26,7 @@ DIR_RAW <- "data/raw"
 
 DIR_PROCESSED <- "data/processed"
 
-DIR_OUTPUT <- "data/output"
+# DIR_OUTPUT <- "data/output"
 
 DIR_FIGURES <- "results/figures"
 
